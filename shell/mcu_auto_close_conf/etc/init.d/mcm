@@ -1,0 +1,55 @@
+#!/bin/bash
+
+TARGET="mcm.sh"
+PID_DIR="/var/run"
+PID_F="/var/run/mcm.pid"
+CONF_IDLE_TIMEOUT=300
+
+do_status () {
+    [ -f "$PID_F" ] && [ -f "/proc/$(cat $PID_F)/status" ] && [ "$(cat /proc/$(cat $PID_F)/status | grep Name | awk '{ print $2 }')" = "$TARGET" ] && {
+        return 0;
+    } || {
+        return 1;
+    }
+}
+
+do_start () {
+
+    do_status && {
+        echo "$TARGET already running"
+        exit 1
+    }
+    # ulimit -c unlimited
+
+    /sbin/mcs/mcm.sh $CONF_IDLE_TIMEOUT &
+}
+
+do_stop () {
+    [ -f $PID_F ] && kill -9 $(cat $PID_F) && rm -f $PID_F
+}
+
+case "$1" in
+    start)
+        do_start
+    ;;
+    stop)
+        do_stop
+    ;;
+    restart|reload|force-reload)
+        do_stop
+        do_start
+    ;;
+    status)
+        do_status && {
+            echo "$TARGET running($(cat $PID_F))"
+        } || {
+            echo "$TARGET no running"
+        }
+    ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|status}" >&2
+        exit 3
+    ;;
+esac
+
+exit 0
