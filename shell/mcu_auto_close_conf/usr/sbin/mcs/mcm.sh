@@ -360,7 +360,7 @@ do_start()
 	func_log_append 1 "\n Timeout: \t$IDLE_AUTO_CLOSE_EXPIRES s\n CheckInterval: $MONITOR_INTERVAL s\n LogFile:\t$LOG_FILE_NEME\n"
 
 	echo $$>$PID_FILE
-	while [ -f /tmp/mcu.pid ]
+	while [ -f $PID_FILE ]
 	do
 		func_log_append 2 "=== loop time $loop_time:"
 		garr_cur_time=`cat /proc/uptime |awk -F'.' '{ print $1 }'`
@@ -373,7 +373,7 @@ do_start()
 			#func_show_conference_list
 		else
 			func_log_append 1 "No conference";
-			gi_conf_num_n=0z
+			gi_conf_num_n=0
 		fi
 
 #		# 调试，保存cs命令查询结果的原始信息
