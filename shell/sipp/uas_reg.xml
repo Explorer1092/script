@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<!--This scenario is written by huanglz-->
+<!--本脚本由huanglz编写-->
+<!--Any question please mail to hlz_2599@163.com-->
+<!--有任何问题可以联系本人邮箱hlz_2599@163.com-->
+<!--本脚本设置的注册刷新周期默认为90秒-->
+<!--如果想自定义为其他值，可以使用命令行set命令修改-->
+<!--如改为1800秒则为set EXP 1800，请不要小于45秒-->
+<!--本脚本的典型运行命令如下-->
+<!--sipp -sf regserver.xml -i x.x.x.x -inf users.conf -infindex users.conf 0 -set EXP 900-->
+<!--注意：本脚本需要用到一个用户存储用户名和密码的injection文件users.conf-->
+<!--该文件格式如下：-->
+<!--第一行：USERS-->
+<!--其余为鉴权用户名与密码，形式为“分机号;密码”，如：7020;123456-->
+
+<scenario name="regserver_withauth">
+
+    <!-- Define a global variable EXP used for Expires -->
+    <!-- 定义全局变量EXP用于设置Expires的值-->
+    <Global variables="EXP" />
+
+    <!-- init a stanza to set the default value of EXP to 90 if the EXP is not set -->
+    <!-- 以下功能为初始一个stanza用来设置EXP的默认值为90秒 -->
+
+    <init>
+        <!-- By Default EXP is true. -->
+        <!-- 默认时EXP为值 -->
+        <nop>
+            <action>
+                <!--Compare the value of $EXP to "", if $EXP is empty, the $empty is 0 -->
+                <!-- 比较变量$EXP与空白""的值，如果$EXP为空，则$empty为0 -->
+                <strcmp assign_to="empty" variable="EXP" value="" />
+                <!--Compare the value of $empty to "0", if they are equal, the $empty is 1-->
+                <!--比较$empty与"0"的大小, 如果它们相等,则$empty为1-->
+                <test assign_to="empty" compare="equal" variable="empty" value="0" />
+            </action>
+        </nop>
+        <!--If the $empty is 1, do the assignstr action -->
+        <!--如果$empty为1, 则执行assignstr动作 -->
+        <nop condexec="empty">
+            <action>
+                <!--Set the value of EXP to 90-->
+                <!--设置EXP的值为90-->
+                <assignstr assign_to="EXP" value="90" />
+            </action>
+        </nop>
+    </init>
+
+
+
+    <recv request="OPTIONS" optional="global" next="OPTIONS" crlf="true">
+    </recv>
+
+    <recv request="REGISTER" >
+        <action>
+            <!--Extract the display name, user name, domain name from the To header-->
+            <!--从To头域提取显示名，用户名和域名，这里必须分成两个正则表达式进行-->
+            <ereg regexp="(.*)"
+                search_in="hdr"
+                header="To: "
+                check_it="true"
+                assign_to="header_to" />
+            <ereg regexp="(.*)<sip:(.*)@(.*)>"
+                search_in="var"
+                check_it="true"
+                variable="header_to"
+                assign_to="huanglz1,display,user,domain" />      
+            </action>
+        </recv>
+
+        <nop hide="true">
+            <action>
+                <!--报取秒和毫秒，在后面用于生成呼叫tag-->
+                <gettimeofday assign_to="seconds,microseconds" />
+            </action>
+        </nop>
+
+        <send start_rtd="register">
+            <![CDATA[
+
+            SIP/2.0 401 Unauthorized
+            [last_Via:]
+            [last_Call-ID:]
+            [last_From:]
+            [last_To:];tag=[$microseconds]Huanglz[pid]SIPpTag01[call_number]
+            [last_CSeq:]
+            WWW-Authenticate: Digest realm="[$domain]",nonce="0000huanglz[$seconds]nonce==",stale=true,algorithn=MD5
+            content-Length: 0
+
+            ]]>
+        </send>
+
+        <recv request="REGISTER" rtd="register">
+            <action>
+                <!--Extract the username from the Register message sending from SUT-->
+                <!--从发过来的register消息中提取用户名-->
+                <ereg regexp="Digest .*username=\"([^\"]*)\"" search_in="hdr" header="Authorization:" assign_to="junk,username" />
+                <!--根据用户名从文件users.conf查找对应的行-->
+                <lookup assign_to="line" file="users.conf" key="[$username]" />
+                <!--根据对应的行的信息来对该用户进行认证-->
+                <verifyauth assign_to="authvalid" username="[field0 line=\"[$line]\"]" password="[field1 line=\"[$line]\"]" />
+            </action>
+        </recv>
+
+        <!--If the auth is valid, go to goodauth-->
+        <!--如果认证通过则跳到goodauth，否则跳到badauth-->
+        <nop hide="true" test="authvalid" next="goodauth" />
+        <nop hide="true" next="badauth" />
+
+
+        <label id="goodauth" />
+        <send next="END" crlf="true">
+            <![CDATA[
+
+            SIP/2.0 200 OK
+            [last_Via:]
+            [last_Call-ID:]
+            [last_From:]
+            [last_To:];tag=[$microseconds]Huanglz[pid]SIPpTag02[call_number]
+            [last_CSeq:]
+            [last_Contact];q=1;Expires=[$EXP]
+            Expires: [$EXP]
+            user-agent: SIPP version [sipp_version]
+            subject: reg performance test made by huanglz
+            Content-Length: 0
+
+            ]]>
+        </send>
+
+        <label id="badauth" />
+        <send next="END" crlf="true">
+            <![CDATA[
+
+            SIP/2.0 480 Temporarily Unavailable
+            [last_Via:]
+            [last_Call-ID:]
+            [last_From:]
+            [last_To:];tag=[$microseconds]Huanglz[pid]SIPpTag02[call_number]
+            [last_CSeq:]
+            Retry-After: 20
+            user-agent: SIPP version [sipp_version]
+            subject: reg performance test made by huanglz
+            Content-Length: 0
+
+            ]]>
+        </send>
+
+        <label id="OPTIONS"/>
+        <send next="END" crlf="true">
+            <![CDATA[
+
+            SIP/2.0 200 OK
+            [last_Via:]
+            [last_Call-ID:]
+            [last_From:]
+            [last_To:];tag=telpo-huanglz-reg2[call_number]
+            [last_CSeq:]
+            [last_Contact]
+            user-agent: SIPP version [sipp_version]
+            subject: reg performance test made by huanglz
+            huanglz: I am alive, haha
+            Content-Length: 0
+
+            ]]>
+        </send>
+
+
+        <label id="END"/>
+        <nop hide="true">
+        </nop>
+
+        <Reference variables="huanglz1,display,user,junk" />
+
+        <!-- Definition of the response time repartition table (unit is ms)   -->
+        <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200, 250"/>
+
+        <!-- Definition of the call length repartition table (unit is ms)     -->
+        <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+
+    </scenario>

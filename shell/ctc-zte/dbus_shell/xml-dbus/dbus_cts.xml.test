@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dbus> 
+  <node name="/com/ctc/igd1/Config/WLAN/ExTimers/{i}"> 
+    <interface name="com.ctc.igd1.WiFiTimer1"> 
+      <property type="as" name="WeekDay" access="readwrite" notification="y"/>  
+      <property type="s" name="Time" access="readwrite" notification="y"/>  
+      <property type="s" name="Active" access="readwrite" notification="y"/>  
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="u" name="SSIDMask" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+</dbus>

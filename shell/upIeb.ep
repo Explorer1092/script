@@ -1,0 +1,7 @@
+#!/usr/bin/expect  
+
+set timeout 600
+	spawn ssh root@192.168.88.243 "cd /starnet_pbx/home/ieb;./updateImg.sh"
+	expect "password: " 
+	send "*#@8016@#*\r"  
+	expect eof

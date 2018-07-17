@@ -1,0 +1,25 @@
+#!/bin/sh
+
+FILES=`ls *.c *.h`
+TARGET_ROOT_PATH=$1
+
+echo "TARGET_ROOT_PATH : [$TARGET_ROOT_PATH]"
+
+for i in $FILES;
+do
+	echo -e "\n===> $i"
+	FilePath=`find $TARGET_ROOT_PATH -name $i`
+	FindResult=`echo $FilePath|grep $i|wc -l`
+	echo "  FilePath:"$FilePath
+	echo "  FindResult:"$FindResult
+	if [ "${FindResult}" == "1" ]; then
+		echo "  Find file "$i" in "$FilePath
+		echo -n "  Enter target path(empty is use default):"
+		read T_PATH
+		[ "$T_PATH" == "" ]&&T_PATH=$FilePath
+		echo "  Copying "$i" to "$T_PATH
+		cp $i $T_PATH
+	else
+		echo "  Cann't find file in "$TARGET_ROOT_PATH
+	fi
+done

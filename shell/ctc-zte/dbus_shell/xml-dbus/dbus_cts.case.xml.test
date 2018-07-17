@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dbus>     
+  <case name=""> 
+    <node name="/com/ctc/igd1/Config/WLAN/ExTimers/{i}"> 
+      <interface name="com.ctc.igd1.WiFiTimer1"> 
+        <property type="as" name="WeekDay" access="readwrite" notification="y" test_value=",1,3" test_value2=",2,6"/>  
+        <property type="s" name="Time" access="readwrite" notification="y" test_value="00:51" test_value2="00:52"/>  
+        <property type="s" name="Active" access="readwrite" notification="y" test_value="0" test_value2="1"/>  
+        <property type="b" name="Enable" access="readwrite" notification="y" test_value="1" test_value2="0"/>  
+        <property type="u" name="SSIDMask" access="readwrite" notification="y" test_value="1" test_value2="7"/> 
+      </interface> 
+    </node> 
+  </case>  
+</dbus>

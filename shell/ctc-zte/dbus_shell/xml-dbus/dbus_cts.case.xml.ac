@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dbus>     
+  <case name=""> 
+    <node name="/com/ctc/igd1/Config/WLAN/ExTimers/{i}"> 
+      <interface name="com.ctc.igd1.WiFiTimer1"> 
+        <property type="as" name="WeekDay" access="readwrite" notification="y" test_value=",1,3" test_value2=",2,6"/>  
+        <property type="s" name="Time" access="readwrite" notification="y" test_value="00:51" test_value2="00:52"/>  
+        <property type="s" name="Active" access="readwrite" notification="y" test_value="0" test_value2="1"/>  
+        <property type="b" name="Enable" access="readwrite" notification="y" test_value="1" test_value2="0"/>  
+        <property type="u" name="SSIDMask" access="readwrite" notification="y" test_value="1" test_value2="7"/> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Config/WLAN/ExTimers"> 
+      <interface name="com.ctc.igd1.ObjectManager"> 
+        <method name="GetManagedObjects"> 
+          <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+        </method>  
+        <method name="AddObject"> 
+          <arg type="o" name="|objpath|object_path" direction="out"/> 
+        </method>  
+        <method name="DeleteObject"> 
+          <arg type="o" name="|objpath|object_path" direction="in"/> 
+        </method>  
+        <method name="RemoveAllObjects"/>  
+        <signal name="InterfacesAdded"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+        </signal>  
+        <signal name="InterfacesRemoved"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="as" name="interfaces"/> 
+        </signal> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Config/Power/SleepTimers/{i}"> 
+      <interface name="com.ctc.igd1.SleepTimer"> 
+        <property type="as" name="Day" access="readwrite" notification="y" test_value=",1,2" test_value2=",3,5"/>  
+        <property type="s" name="Time" access="readwrite" notification="y" test_value="00:57" test_value2="00:58"/>  
+        <property type="s" name="Active" access="readwrite" notification="y" test_value="0" test_value2="1"/>  
+        <property type="b" name="Enable" access="readwrite" notification="y" test_value="1" test_value2="0"/> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Config/Power/SleepTimers"> 
+      <interface name="com.ctc.igd1.ObjectManager"> 
+        <method name="GetManagedObjects"> 
+          <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+        </method>  
+        <method name="AddObject"> 
+          <arg type="o" name="|objpath|object_path" direction="out"/> 
+        </method>  
+        <method name="DeleteObject"> 
+          <arg type="o" name="|objpath|object_path" direction="in"/> 
+        </method>  
+        <method name="RemoveAllObjects"/>  
+        <signal name="InterfacesAdded"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+        </signal>  
+        <signal name="InterfacesRemoved"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="as" name="interfaces"/> 
+        </signal> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Storage/Ftpserver/Accounts/{i}"> 
+      <interface name="com.ctc.igd1.FTPAccount"> 
+        <property type="s" name="UserName" access="readwrite" notification="y" test_value="TelecomUserName" test_value2="TelecomUserName2"/>  
+        <property type="s" name="Password" access="readwrite" notification="y" test_value="123" test_value2="333"/> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Storage/Ftpserver/Accounts"> 
+      <interface name="com.ctc.igd1.ObjectManager"> 
+        <method name="GetManagedObjects"> 
+          <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+        </method>  
+        <method name="AddObject"> 
+          <arg type="o" name="|objpath|object_path" direction="out"/> 
+        </method>  
+        <method name="DeleteObject"> 
+          <arg type="o" name="|objpath|object_path" direction="in"/> 
+        </method>  
+        <method name="RemoveAllObjects"/>  
+        <signal name="InterfacesAdded"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+        </signal>  
+        <signal name="InterfacesRemoved"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="as" name="interfaces"/> 
+        </signal> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Storage/SambaServer/Accounts/{i}"> 
+      <interface name="com.ctc.igd1.SambaAccount"> 
+        <property type="s" name="UserName" access="readwrite" notification="y" test_value="TelecomSambaAccount" test_value2="TelecomSambaAccount2"/>  
+        <property type="s" name="Password" access="readwrite" notification="y" test_value="1212" test_value2="1111"/> 
+      </interface> 
+    </node> 
+  </case>  
+  <case name=""> 
+    <node name="/com/ctc/igd1/Storage/SambaServer/Accounts"> 
+      <interface name="com.ctc.igd1.ObjectManager"> 
+        <method name="GetManagedObjects"> 
+          <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+        </method>  
+        <method name="AddObject"> 
+          <arg type="o" name="|objpath|object_path" direction="out"/> 
+        </method>  
+        <method name="DeleteObject"> 
+          <arg type="o" name="|objpath|object_path" direction="in"/> 
+        </method>  
+        <method name="RemoveAllObjects"/>  
+        <signal name="InterfacesAdded"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+        </signal>  
+        <signal name="InterfacesRemoved"> 
+          <arg type="o" name="object_path"/>  
+          <arg type="as" name="interfaces"/> 
+        </signal> 
+      </interface> 
+    </node> 
+  </case>  
+</dbus>

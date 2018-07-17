@@ -1,0 +1,6 @@
+if [ "$1" == "128" ]; then
+SDK_PATH="/share/psmg/128_zxic_yueme/"
+else
+SDK_PATH="/share/psmg/zxic_ct_yueme/"
+fi
+svn info $SDK_PATH |grep "Revision"| awk  -F"Revision: " '{ print$2}'

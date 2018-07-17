@@ -1,0 +1,21 @@
+#!/usr/bin/expect  
+if {$(current_dev) == 8200} {
+include ~/bin/ssh_dev/8200.conf
+}
+else{
+set user root
+set dev_ip 192.168.78.189
+set passwd 123321
+}
+
+if {$argc != 2} {
+send "usage ./mysz \$localpath \$remotepath\n"
+exit
+}
+set localpath  [lindex $argv [expr $argc-2]]
+set remotepath [lindex $argv [expr $argc-1]]
+spawn scp $localpath $user@$dev_ip:$remotepath
+expect "password: "  
+send "$passwd\r"  
+expect eof
+exit

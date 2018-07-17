@@ -1,0 +1,54 @@
+#!/bin/sh
+
+if [ "$1" == "128" ]; then
+IMAGE_PREFIX=128_V1.0.0_
+IMAGE_TYPE=128
+SDK_PATH="/share/psmg/128_zxic_yueme/compatible_branch/make/target/bin/128/"
+IMAGE_NAME="${IMAGE_PREFIX}UPGRADE_ALL.bin"
+svn_info=`/share/lry/bin/lGSvnR 128`
+else
+IMAGE_PREFIX=127_V1.0.0_
+IMAGE_TYPE=127
+SDK_PATH="/share/psmg/zxic_ct_yueme/compatible_branch/make/target/bin/127/"
+IMAGE_NAME="${IMAGE_PREFIX}UPGRADE_ALL.bin"
+svn_info=`/share/lry/bin/lGSvnR 127`
+fi
+
+BUILD_TIME=`ls -all $SDK_PATH/release/${IMAGE_PREFIX}UPGRADE_ALL.bin |awk '{ print $6""$7"_"$8 }' |sed  "s;:;;g"`
+PACK_DIR=${BUILD_TIME}"_"r${svn_info}"_"${IMAGE_TYPE}
+echo "BUILD:" $BUILD_TIME
+echo "PACK_DIR: "$PACK_DIR
+
+TMP_DIR="/share/software/tmp/$PACK_DIR"
+MD5_INFO="src_info"
+FILE_INFO="dir_info"
+mkdir $TMP_DIR -p
+cd $TMP_DIR
+echo "">${FILE_INFO}
+echo "">${MD5_INFO}
+
+TARGIT_FILES="$SDK_PATH/release/${IMAGE_PREFIX}UPGRADE_ALL.bin $SDK_PATH/release/${IMAGE_PREFIX}UPGRADE.bin $SDK_PATH/image/uboot.bin"
+for i in $TARGIT_FILES;
+do
+	ls -all $i | awk '{ print $5" "$6" "$7" "$8" "$9 }' >>${FILE_INFO}&& md5sum $i >>${MD5_INFO}
+	cp $i $TMP_DIR
+done
+
+echo ""
+echo "Src fils info:"
+cat ${FILE_INFO};rm ${FILE_INFO}
+cat ${MD5_INFO};rm ${MD5_INFO}
+echo "==============================="
+
+echo ""
+echo "Src fils info:"
+ls -all	./*
+md5sum ./*
+
+
+echo ""
+echo "========= Note ======================"
+echo Please files in  $TMP_DIR
+echo 1. please upgrade image and edit $TMP_DIR/readme.txt
+echo 2. please execute \"tar czf $TMP_DIR.tar.gz $TMP_DIR\"
+echo 3. Then You can publish it by \" scp_s $TMP_DIR.tar.gz $TMP_DIR.tar.gz\" to push it to alyun!

@@ -1,0 +1,13 @@
+#!/bin/sh
+echo "enter \"Enter\" to up ieb, or q to exit scripte!"
+while read text
+do
+	if [ "${text}" == "q" ]; then
+		exit 1;
+	else
+		./upIeb.ep
+		echo "upIeb.ep success"
+		echo ""
+		echo "enter \"Enter\" to up ieb, or q to exit scripte!"
+	fi
+done

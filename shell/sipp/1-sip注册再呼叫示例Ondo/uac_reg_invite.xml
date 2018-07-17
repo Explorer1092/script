@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+<!--±¾³¡¾°ÏÈÏò´úÀí·¢ÆðÖ§³Ö¼øÈ¨µÄ×¢²áÇëÇó-->
+<!--×¢²á³É¹¦ºó·¢Æðºô½Ð-->
+<!--ºô½Ð½¨Á¢ºóÍ¨»°500Ãë-->
+<!--È»ºó¹Ò¶Ï½øÈëµÚ¶þ´ÎÑ­»·-->
+<scenario name="UAC_Register">
+<!--·¢ËÍ×¢²áÇëÇó£¬ÆäÖÐfield0ÊÇÒª×¢²áµÄºÅÂë¡£µÇÂ½ÓÐÐ§ÆÚ1Ð¡Ê±-->
+  <send retrans="500">
+    <![CDATA[
+      REGISTER sip:[remote_ip] SIP/2.0
+      From: [field0] <sip:[field0]@[local_ip]:[local_port]>;tag=[call_number]
+      To: [field0] <sip:[field0]@[remote_ip]:[remote_port]>
+      Call-ID: [call_id]
+      CSeq: 1 REGISTER
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Max-Forwards: 70
+      Contact: <sip:[field0]@[local_ip]:[local_port]>
+      Expires: 3600
+      Content-Length: 0
+     ]]>
+   </send>
+<!--Óöµ½401Ö¸ÁîÔòÌø×ªµ½´øÈÏÖ¤ÐÅÏ¢µÄ×¢²áÇëÇó-->
+  <recv response="401" auth="true" optional="true" next="1"/>
+<!--Èç¹û²»ÐèÒªÈÏÖ¤·þÎñÆ÷·µ»Ø200OK£¬ÔòÖ±½Ó½áÊø-->
+  <recv response="100" optional="true"/>
+  <recv response="200" rtd="true" crlf="true" next="2"/>
+<!--±êÇ©1ÊÇ´øÓÐÈÏÖ¤ÐÅÏ¢µÄ×¢²áÇëÇó£¬ÆäÖÐfield1ÊÇÈÏÖ¤ÐÅÏ¢-->
+  <label id="1"/>
+  <send retrans="500">
+  <![CDATA[
+      REGISTER sip:[field0]@[remote_ip]:[remote_port] SIP/2.0
+      From: [field0] <sip:[field0]@[local_ip]:[local_port]>;tag=[call_number]
+      To: [field0] <sip:[field0]@[remote_ip]:[remote_port]>
+      Call-ID: [call_id]
+      CSeq: 2 REGISTER
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Max-Forwards: 70
+      Supported: 100rel
+      Contact: <sip:[field0]@[local_ip]:[local_port]>
+      Expires: 3600
+      Allow: INVITE,ACK,BYE,REGISTER,PRACK,SUBSCRIBE,CANCEL,NOTIFY,REFER,OPTIONS,INFO,MESSAGE,UPDATE
+      Content-Length: 0
+      [field2]
+      ]]>
+  </send>
+  <recv response="100" optional="true"/>
+  <recv response="200" rtd="true" crlf="true"/>
+  <label id="2"/>
+    <send retrans="500">
+    <![CDATA[
+
+      INVITE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+      From: "[field0]"<sip:[field0]@[local_ip]:[local_port]>;tag=[call_number]
+      To: <sip:[field1]@[remote_ip]:[remote_port]>
+      Call-ID: [call_id]
+      CSeq: 1 INVITE
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Allow: INVITE,ACK,BYE,REGISTER,PRACK,SUBSCRIBE,CANCEL,NOTIFY,REFER,OPTIONS,INFO,MESSAGE,UPDATE
+      Max-Forwards: 70
+      Supported: 100rel
+      Contact: <sip:[field0]@[local_ip]:[local_port]>
+      Subject: Performance Test
+      Content-Type: application/sdp
+      Content-Length: [len]
+
+      v=0
+      o=user1 53655765 2353687637 IN IP4[local_ip_type] [local_ip]
+      s=Performance Test
+      c=IN IP[media_ip_type] [media_ip]
+      t=0 0
+      m=audio [media_port] RTP/AVP 8 0 4 18 9 101
+      a=rtpmap:8 PCMA/8000
+      a=rtpmap:0 PCMU/8000
+      a=rtpmap:4 G723/8000
+      a=rtpmap:18 G729/8000
+      a=rtpmap:9 G722/8000
+      a=rtpmap:101 telephone-event/800
+      a=fmtp:101 0-15
+      a=ptime:20
+      a=sendrecv
+    ]]>
+  </send>
+
+  <recv response="100" optional="true">
+  </recv>
+
+  <recv response="180" optional="true">
+  </recv>
+  
+  <recv response="183" optional="true">
+  </recv>
+  <!-- ¿ÉÒÔ¼ÓÈërrs="true" (Record Route Sets)ÊôÐÔ,         -->
+  <!-- Â·ÓÉÉèÖÃ»á±£´æÔÚ½ÓÏÂÀ´Òª·¢ËÍµÄÐÅÏ¢µ±ÖÐ         -->
+  <!-- ¶Ô²âÊÔSIP´úÀíºÍB2BUAÊÇ·Ç³£ÓÐÓÃµÄ         -->
+  <recv response="200" rtd="true">
+  </recv>
+
+  <!-- ¿ÉÒÔÍ¨¹ý¼ÓÈë²ÎÊý 'lost = "10"'. ·¶Î§Îª[1-100] %À´Ä£Äâ¶ª°üÂÊ       -->
+  <send>
+    <![CDATA[
+
+      ACK sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: sipp <sip:[field0]@[local_ip]:[local_port]>;tag=[call_number]
+      To: sut <sip:[field1]@[remote_ip]:[remote_port]>[peer_tag_param]
+      Call-ID: [call_id]
+      CSeq: 1 ACK
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      Contact: <sip:[field0]@[local_ip]:[local_port]>
+      Max-Forwards: 70
+      Subject: Performance Test
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <!-- ÑÓ³Ù¿ÉÒÔÊ¹ÓÃ²ÎÊý-dÀ´×Ô¶¨Òå       -->
+  <!-- »òÕßÔÚpauseºó¼ÓÈë 'milliseconds = "value"'À´¶¨Òå.             -->
+  <pause milliseconds = "500000"/>
+
+  <!-- 'crlf' Ñ¡ÏîÓÃÀ´ÔÚÍ³¼Æ±¨¸æÖÐ²åÈë¿ÕÐÐ-->
+  <send retrans="500">
+    <![CDATA[
+
+      BYE sip:[field1]@[remote_ip]:[remote_port] SIP/2.0
+      From: sipp <sip:[field0]@[local_ip]:[local_port]>;tag=[call_number]
+      To: sut <sip:[field1]@[remote_ip]:[remote_port]>[peer_tag_param]
+      Call-ID: [call_id]
+      CSeq: 2 BYE
+      Contact: <sip:[field0]@[local_ip]:[local_port]>
+      Max-Forwards: 70
+      Subject: Performance Test
+      Content-Length: 0
+
+    ]]>
+  </send>
+
+  <recv response="200" crlf="true">
+  </recv>
+
+  <!-- definition of the response time repartition table (unit is ms)   -->
+  <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+
+  <!-- definition of the call length repartition t

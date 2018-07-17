@@ -1,0 +1,4174 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<dbus> 
+  <node name="/com/ctc/igd1/Info/Device"> 
+    <interface name="com.ctc.igd1.DeviceInfo"> 
+      <property type="y" name="BusinessStatus" access="read" notification="y"/>  
+      <property type="s" name="Manufacturer" access="read" notification="n"/>  
+      <property type="s" name="MAC" access="read" notification="n"/>  
+      <property type="s" name="SWVersion" access="read" notification="n"/>  
+      <property type="s" name="HDVersion" access="read" notification="n"/>  
+      <property type="s" name="ITMSProtocolVersion" access="read" notification="n"/>  
+      <property type="s" name="SpecVersion" access="read" notification="n"/>  
+      <property type="s" name="DBusInterfaceVersion" access="read" notification="n"/>  
+      <property type="s" name="ProductClass" access="read" notification="n"/>  
+      <property type="s" name="CPUClass" access="read" notification="n"/>  
+      <property type="s" name="DevType" access="read" notification="n"/>  
+      <property type="s" name="DevType1" access="read" notification="n"/>  
+      <property type="s" name="DevType2" access="read" notification="n"/>  
+      <property type="s" name="Capability" access="read" notification="n"/>  
+      <property type="u" name="FlashSize" access="read" notification="n"/>  
+      <property type="u" name="RamSize" access="read" notification="n"/>  
+      <property type="s" name="DevName" access="readwrite" notification="y"/>  
+      <property type="y" name="CPUUsage" access="read" notification="n"/>  
+      <property type="y" name="MEMUsage" access="read" notification="n"/>  
+      <property type="y" name="FlashUsage" access="read" notification="n"/>  
+      <property type="u" name="SysDuration" access="read" notification="n"/>  
+      <property type="y" name="HGWSleep" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/Network/WANConnectionDb/{i}"> 
+    <interface name="com.ctc.igd1.WANConnectionInfo"> 
+      <property type="s" name="Index" access="read" notification="n"/>  
+      <property type="s" name="WANName" access="read" notification="n"/>  
+      <property type="s" name="IfName" access="read" notification="n"/>  
+      <property type="s" name="ServiceList" access="read" notification="y"/>  
+      <property type="s" name="ConnectionType" access="read" notification="n"/>  
+      <property type="u" name="VLANID" access="read" notification="n"/>  
+      <property type="u" name="VLAN8021P" access="read" notification="n"/>  
+      <property type="s" name="Protocol" access="read" notification="n"/>  
+      <property type="s" name="ConnectionStatus" access="read" notification="y"/>  
+      <property type="s" name="IPAddress" access="read" notification="y"/>  
+      <property type="s" name="SubnetMask" access="read" notification="y"/>  
+      <property type="s" name="Gateway" access="read" notification="y"/>  
+      <property type="s" name="DNS1" access="read" notification="y"/>  
+      <property type="s" name="DNS2" access="read" notification="y"/>  
+      <property type="s" name="IPv6_ConnectionStatus" access="read" notification="y"/>  
+      <property type="s" name="IPv6_IPAddress" access="read" notification="y"/>  
+      <property type="s" name="IPv6_PrefixLength" access="read" notification="y"/>  
+      <property type="s" name="IPv6_Gateway" access="read" notification="y"/>  
+      <property type="s" name="IPv6_DNS1" access="read" notification="y"/>  
+      <property type="s" name="IPv6_DNS2" access="read" notification="y"/>  
+      <property type="s" name="IPv6_Prefix" access="read" notification="y"/>  
+      <property type="t" name="RxBytes" access="read" notification="n"/>  
+      <property type="t" name="TxBytes" access="read" notification="n"/>  
+      <property type="t" name="RxPkts" access="read" notification="n"/>  
+      <property type="t" name="TxPkts" access="read" notification="n"/>  
+      <property type="s" name="IPv6_AddressOrigin" access="read" notification="n"/>  
+      <property type="s" name="IPv6_PrefixOrigin" access="read" notification="n"/>  
+      <property type="u" name="IPv6_PrefixPltime" access="read" notification="n"/>  
+      <property type="u" name="IPv6_PrefixVltime" access="read" notification="n"/>  
+      <property type="b" name="DSLite_Enable" access="read" notification="n"/>  
+      <property type="y" name="DSLite_AftrMode" access="read" notification="n"/>  
+      <property type="s" name="DSLite_Aftr" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/Network/WANConnectionDb"> 
+    <interface name="com.ctc.igd1.WANConnectionDb"> 
+      <method name="GetWANConnByName"> 
+        <arg name="name" type="s" direction="in" test_value="1"/>  
+        <arg name="path" type="o" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetInternetConnIndex"> 
+        <arg name="path" type="o" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/Network"> 
+    <interface name="com.ctc.igd1.NetworkInfo"> 
+      <property type="u" name="UPLink" access="read" notification="n"/>  
+      <property type="y" name="IPv6" access="read" notification="n"/>  
+      <property type="y" name="VLANbind" access="read" notification="n"/>  
+      <property type="s" name="WiFiMode" access="read" notification="n"/>  
+      <property type="u" name="PONDuration" access="read" notification="n"/>  
+      <property type="u" name="PPPOEDuration" access="read" notification="n"/>  
+      <property type="y" name="LAN1Status" access="read" notification="y"/>  
+      <property type="y" name="LAN2Status" access="read" notification="y"/>  
+      <property type="y" name="LAN3Status" access="read" notification="y"/>  
+      <property type="y" name="LAN4Status" access="read" notification="y"/>  
+      <property type="t" name="LAN1TXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN1RXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN2TXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN2RXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN3TXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN3RXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN4TXByte" access="read" notification="n"/>  
+      <property type="t" name="LAN4RXByte" access="read" notification="n"/>  
+      <property type="s" name="WANLinkStatus" access="read" notification="y"/>  
+      <property type="s" name="WIFIModuleStatus" access="read" notification="y"/>  
+      <property type="s" name="WANConnectionStatus" access="read" notification="y"/>  
+      <property type="s" name="PPPoEDialReason" access="read" notification="n"/>  
+      <property type="s" name="IPv6_WANConnectionStatus" access="read" notification="y"/>  
+      <property type="s" name="IPv6_PPPoEDialReason" access="read" notification="n"/>  
+      <property type="s" name="LANIPAddr" access="read" notification="y"/>  
+      <property type="s" name="LANIPv6Addr" access="read" notification="y"/>  
+      <property type="s" name="WANIPAddr" access="read" notification="y"/>  
+      <property type="s" name="WANIPv6Addr" access="read" notification="y"/>  
+      <property type="t" name="WiFiBytes" access="read" notification="n"/>  
+      <property type="t" name="WiFiTxBytes" access="read" notification="n"/>  
+      <property type="t" name="WiFiRxBytes" access="read" notification="n"/>  
+      <property type="t" name="WANBytes" access="read" notification="n"/>  
+      <property type="t" name="WANTxBytes" access="read" notification="n"/>  
+      <property type="t" name="WANRxBytes" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/PON"> 
+    <interface name="com.ctc.igd1.PONInfo"> 
+      <property type="s" name="LOID" access="read" notification="n"/>  
+      <property type="s" name="Password" access="read" notification="n"/>  
+      <property type="d" name="Temperature" access="read" notification="n"/>  
+      <property type="d" name="Voltage" access="read" notification="n"/>  
+      <property type="d" name="Current" access="read" notification="n"/>  
+      <property type="d" name="TXPower" access="read" notification="n"/>  
+      <property type="d" name="RXPower" access="read" notification="n"/>  
+      <property type="b" name="SupportPONStatusQuery" access="read" notification="n"/>  
+      <property type="s" name="PONStatus" access="read" notification="n"/>  
+      <property type="t" name="BytesSent" access="read" notification="n"/>  
+      <property type="t" name="BytesReceived" access="read" notification="n"/>  
+      <property type="t" name="PacketsSent" access="read" notification="n"/>  
+      <property type="t" name="PacketsReceived" access="read" notification="n"/>  
+      <property type="t" name="FECError" access="read" notification="n"/>  
+      <property type="t" name="DropPackets" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/VoIP"> 
+    <interface name="com.ctc.igd1.VoIPInfo"> 
+      <property type="s" name="VoIPName1" access="read" notification="y"/>  
+      <property type="s" name="VoIPName2" access="read" notification="y"/>  
+      <property type="s" name="Line1Status" access="read" notification="y"/>  
+      <property type="s" name="Line2Status" access="read" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/2G/Roaming"> 
+    <interface name="com.ctc.igd1.Roaming"> 
+      <property type="s" name="BSSID" access="read" notification="n"/>  
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="u" name="Start_time" access="readwrite" notification="n"/>  
+      <property type="i" name="Threshold1_RSSI" access="readwrite" notification="n"/>  
+      <property type="i" name="Threshold2_RSSI" access="readwrite" notification="n"/>  
+      <method name="StartAPRSSIQuery"> 
+        <arg name="MAC" type="s" direction="in"/>  
+        <arg name="APNumber" type="u" direction="in"/>  
+        <arg name="BSSIDandChannel" type="a{su}" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="StartSTABSSTransitionRequest"> 
+        <arg name="MAC" type="s" direction="in"/>  
+        <arg name="Channel" type="u" direction="in"/>  
+        <arg name="BSSID" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetSTARSSIQuery"> 
+        <arg name="MACandChannel" type="a{su}" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <signal name="APRSSIQueryResult"> 
+        <arg type="u" name="Result"/>  
+        <arg type="s" name="MAC"/>  
+        <arg type="a{si}" name="BSSIDandRSSI"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal>  
+      <signal name="STABSSTransitionResult"> 
+        <arg type="u" name="Result"/>  
+        <arg type="s" name="MAC"/>  
+        <arg type="u" name="StatusCode"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal>  
+      <signal name="STARSSIQueryResult"> 
+        <arg type="u" name="Result"/>  
+        <arg type="a{si}" name="MACandRSSI"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/5G/Roaming"> 
+    <interface name="com.ctc.igd1.Roaming"> 
+      <property type="s" name="BSSID" access="read" notification="n"/>  
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="u" name="Start_time" access="readwrite" notification="n"/>  
+      <property type="i" name="Threshold1_RSSI" access="readwrite" notification="n"/>  
+      <property type="i" name="Threshold2_RSSI" access="readwrite" notification="n"/>  
+      <method name="StartAPRSSIQuery"> 
+        <arg name="MAC" type="s" direction="in"/>  
+        <arg name="APNumber" type="u" direction="in"/>  
+        <arg name="BSSIDandChannel" type="a{su}" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="StartSTABSSTransitionRequest"> 
+        <arg name="MAC" type="s" direction="in"/>  
+        <arg name="Channel" type="u" direction="in"/>  
+        <arg name="BSSID" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetSTARSSIQuery"> 
+        <arg name="MACandChannel" type="a{su}" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <signal name="APRSSIQueryResult"> 
+        <arg type="u" name="Result"/>  
+        <arg type="s" name="MAC"/>  
+        <arg type="a{si}" name="BSSIDandRSSI"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal>  
+      <signal name="STABSSTransitionResult"> 
+        <arg type="u" name="Result"/>  
+        <arg type="s" name="MAC"/>  
+        <arg type="u" name="StatusCode"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal>  
+      <signal name="STARSSIQueryResult"> 
+        <arg type="u" name="Result"/>  
+        <arg type="a{si}" name="MACandRSSI"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/STA/{i}"> 
+    <interface name="com.ctc.igd1.STAInfo"> 
+      <property type="s" name="MAC_STA" access="read" notification="n"/>  
+      <property type="u" name="Channel" access="read" notification="n"/>  
+      <property type="s" name="BSSID" access="read" notification="n"/>  
+      <property type="b" name="BSS_Transition" access="read" notification="n"/>  
+      <property type="b" name="Beacon_Report_Support" access="read" notification="n"/>  
+      <property type="i" name="RSSI" access="read" notification="n"/>  
+      <method name="SetSTADeassociationRequest"> 
+        <arg name="MAC_STA" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <signal name="STARSSILowAlarm"> 
+        <arg type="s" name="MAC_STA"/>  
+        <arg type="b" name="TYPE"/>  
+        <arg type="i" name="RSSI"/>  
+        <arg type="u" name="RFBand"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/STA"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/WiFi"> 
+    <interface name="com.ctc.igd1.WiFiInfo"> 
+      <property type="b" name="Enable2G" access="readwrite" notification="y"/>  
+      <property type="b" name="Enable5G" access="readwrite" notification="y"/>  
+      <property type="s" name="WiFiMode" access="read" notification="n"/>  
+      <property type="b" name="DualBand" access="read" notification="n"/>  
+      <property type="b" name="SameSSIDStatus" access="read" notification="y"/>  
+      <property type="t" name="RxBytes" access="read" notification="n"/>  
+      <property type="t" name="RxPkts" access="read" notification="n"/>  
+      <property type="t" name="RxErrorPkts" access="read" notification="n"/>  
+      <property type="t" name="RxDropPkts" access="read" notification="n"/>  
+      <property type="t" name="TxBytes" access="read" notification="n"/>  
+      <property type="t" name="TxPkts" access="read" notification="n"/>  
+      <property type="t" name="TxErrorPkts" access="read" notification="n"/>  
+      <property type="t" name="TxDropPkts" access="read" notification="n"/>  
+      <property type="b" name="RatePriority" access="readwrite" notification="y"/>  
+      <property type="b" name="RatePriority5G" access="readwrite" notification="y"/>  
+      <property type="y" name="ChannelScanStatus" access="readwrite" notification="y"/>  
+      <property type="s" name="ChannelScanFinishTime" access="read" notification="n"/>  
+      <property type="as" name="ChannelScanScore" access="read" notification="n"/>  
+      <property type="y" name="ChannelScanStatus5G" access="readwrite" notification="y"/>  
+      <property type="s" name="ChannelScanFinishTime5G" access="read" notification="n"/>  
+      <property type="as" name="ChannelScanScore5G" access="read" notification="n"/>  
+      <method name="KickOutDevice"> 
+        <arg name="MAC" type="s" direction="in"/>  
+        <arg name="SSIDIndex" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="SetSameSSID"> 
+        <arg name="SSIDIndex24" type="s" direction="in"/>  
+        <arg name="SSIDIndex58" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="CancelSameSSID"> 
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="ChannelSwitch"> 
+        <arg name="Band" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="ChannelCollection"> 
+        <arg name="Band" type="s" direction="in"/>  
+        <arg name="ChannelScore" type="s" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="ChannelCollectionRequest"> 
+        <arg name="Band" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/LANHosts/{i}"> 
+    <interface name="com.ctc.igd1.LANHost"> 
+      <property type="s" name="MAC" access="read" notification="n"/>  
+      <property type="s" name="HostName" access="read" notification="n"/>  
+      <property type="s" name="DevName" access="readwrite" notification="y"/>  
+      <property type="b" name="ControlStatus" access="read" notification="y"/>  
+      <property type="y" name="InternetAccess" access="readwrite" notification="y"/>  
+      <property type="b" name="StorageAccess" access="readwrite" notification="y"/>  
+      <property type="u" name="MaxUSBandwidth" access="readwrite" notification="y"/>  
+      <property type="u" name="MaxDSBandwidth" access="readwrite" notification="y"/>  
+      <property type="s" name="DevType" access="readwrite" notification="n"/>  
+      <property type="s" name="IP" access="read" notification="n"/>  
+      <property type="y" name="ConnectionType" access="read" notification="n"/>  
+      <property type="y" name="Port" access="read" notification="n"/>  
+      <property type="s" name="Brand" access="readwrite" notification="n"/>  
+      <property type="s" name="Model" access="readwrite" notification="n"/>  
+      <property type="s" name="OS" access="readwrite" notification="n"/>  
+      <property type="b" name="Active" access="read" notification="y"/>  
+      <property type="s" name="LatestActiveTime" access="read" notification="y"/>  
+      <property type="s" name="LatestInactiveTime" access="read" notification="y"/>  
+      <property type="u" name="OnlineTime" access="read" notification="n"/>  
+      <property type="t" name="RxBytes" access="read" notification="n"/>  
+      <property type="t" name="TxBytes" access="read" notification="n"/>  
+      <property type="i" name="PowerLevel" access="read" notification="n"/>  
+      <property type="b" name="DeviceOnlineNofication" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/LANHosts"> 
+    <interface name="com.ctc.igd1.LANHostManager"> 
+      <property type="b" name="EnableStats" access="readwrite" notification="y" test_value="0"/>  
+      <property type="u" name="LANHostMaxNumber" access="readwrite" notification="y" test_value="0"/>  
+      <property type="u" name="LANHostNumber" access="read" notification="y" test_value="0"/>  
+      <property type="u" name="ControlListMaxNumber" access="readwrite" notification="y" test_value="0"/>  
+      <property type="u" name="ControlListNumber" access="read" notification="y" test_value="0"/>  
+      <method name="GetOnlineDevicesSnapShot"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetOnlineDeviceList"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetLANHostPathbyMAC"> 
+        <arg name="mac" type="s" direction="in"/>  
+        <arg name="path" type="o" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Diagnostics/HttpDownload"> 
+    <interface name="com.ctc.igd1.HttpDownloadTest"> 
+      <property type="u" name="Status" access="read" notification="y"/>  
+      <property type="s" name="Result" access="read" notification="y"/>  
+      <property type="s" name="URL" access="readwrite" notification="n"/>  
+      <method name="StartTest"> 
+        <arg type="u" name="time" direction="in" test_value="10"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.SpeedTestFF"> 
+      <property type="b" name="TestingStatus" access="read" notification="y"/>  
+      <property type="u" name="Result" access="read" notification="n"/>  
+      <property type="s" name="Ticket" access="readwrite" notification="n"/>  
+      <property type="y" name="SpeedType" access="readwrite" notification="n"/>  
+      <property type="s" name="URL" access="readwrite" notification="n"/>  
+      <property type="s" name="DW_SPEED_MAX_RATE" access="read" notification="n"/>  
+      <property type="s" name="DW_SPEED_RATE" access="read" notification="n"/>  
+      <property type="s" name="UP_SPEED_MAX_RATE" access="read" notification="n"/>  
+      <property type="s" name="UP_SPEED_RATE" access="read" notification="n"/>  
+      <property type="s" name="BEGIN_TIME" access="read" notification="n"/>  
+      <property type="s" name="END_TIME" access="read" notification="n"/>  
+      <method name="StartTest"> 
+        <arg type="u" name="time" direction="in"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/Devices/{i}/WPS"> 
+    <interface name="com.ctc.igd1.WPS"> 
+      <property type="b" name="Enable" access="readwrite" notification="y" test_value="0"/>  
+      <property type="y" name="WPSStatus" access="read" notification="y"/>  
+      <property type="as" name="DevInfo" access="read" notification="n"/>  
+      <method name="SetWPS"> 
+        <arg type="i" name="on1OrOff0" direction="in"/>  
+        <arg type="u" name="time" direction="in"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/Devices/{i}"> 
+    <interface name="com.ctc.igd1.WLANConfiguration"> 
+      <property type="s" name="SSID" access="readwrite" notification="y"/>  
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="u" name="Channel" access="readwrite" notification="y"/>  
+      <property type="u" name="ChannelInUse" access="read" notification="y"/>  
+      <property type="s" name="BeaconType" access="readwrite" notification="y"/>  
+      <property type="s" name="Standard" access="readwrite" notification="n"/>  
+      <property type="s" name="WEPEncryptionLevel" access="readwrite" notification="n"/>  
+      <property type="s" name="BasicAuthenticationMode" access="readwrite" notification="n"/>  
+      <property type="s" name="WPAEncryptionModes" access="readwrite" notification="y"/>  
+      <property type="b" name="SSIDHide" access="readwrite" notification="y"/>  
+      <property type="u" name="RFBand" access="readwrite" notification="n"/>  
+      <property type="u" name="ChannelWidth" access="readwrite" notification="n"/>  
+      <property type="u" name="GuardInterval" access="readwrite" notification="n"/>  
+      <property type="u" name="RetryTimeout" access="readwrite" notification="n"/>  
+      <property type="u" name="Powerlevel" access="readwrite" notification="n"/>  
+      <property type="u" name="PowerValue" access="read" notification="n"/>  
+      <property type="s" name="PWD" access="readwrite" notification="y"/>  
+      <property type="t" name="RxBytes" access="read" notification="n"/>  
+      <property type="t" name="RxPkts" access="read" notification="n"/>  
+      <property type="t" name="RxErrorPkts" access="read" notification="n"/>  
+      <property type="t" name="RxDropPkts" access="read" notification="n"/>  
+      <property type="t" name="TxBytes" access="read" notification="n"/>  
+      <property type="t" name="TxPkts" access="read" notification="n"/>  
+      <property type="t" name="TxErrorPkts" access="read" notification="n"/>  
+      <property type="t" name="TxDropPkts" access="read" notification="n"/>  
+      <property type="s" name="SSIDAlias" access="read" notification="n"/>  
+      <property type="s" name="Owner" access="readwrite" notification="y"/>  
+      <property type="s" name="Service" access="readwrite" notification="y"/>  
+      <property type="u" name="MACAccessMode" access="readwrite" notification="y"/>  
+      <property type="u" name="AccessRule" access="readwrite" notification="y"/>  
+      <property type="s" name="AllowedIPPort" access="readwrite" notification="n"/>  
+      <property type="u" name="USBandwidth" access="readwrite" notification="n"/>  
+      <property type="u" name="DSBandwidth" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/Devices"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/BandSteering"> 
+    <interface name="com.ctc.igd1.WiFiBandSteering"> 
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="b" name="Capability" access="read" notification="n"/>  
+      <property type="i" name="RSSIThreshold" access="readwrite" notification="n"/>  
+      <property type="i" name="RSSIThreshold5G" access="readwrite" notification="n"/>  
+      <property type="u" name="ChannelUtilization5G" access="read" notification="n"/>  
+      <property type="u" name="ChannelUtilizationThreshold5G" access="readwrite" notification="n"/>  
+      <property type="u" name="SteeringDetectInterval" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/Timer"> 
+    <interface name="com.ctc.igd1.WiFiTimer"> 
+      <property type="s" name="StartTime" access="readwrite" notification="y"/>  
+      <property type="s" name="EndTime" access="readwrite" notification="y"/>  
+      <property type="s" name="ControlCycle" access="readwrite" notification="n"/>  
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="u" name="SSIDMask" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/ExTimers/{i}"> 
+    <interface name="com.ctc.igd1.WiFiTimer1"> 
+      <property type="as" name="WeekDay" access="readwrite" notification="y"/>  
+      <property type="s" name="Time" access="readwrite" notification="y"/>  
+      <property type="s" name="Active" access="readwrite" notification="y"/>  
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="u" name="SSIDMask" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/WLAN/ExTimers"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/Peripheral/LED"> 
+    <interface name="com.ctc.igd1.LED"> 
+      <property type="s" name="Status" access="readwrite" notification="y" test_value="ON"/>  
+      <property type="s" name="StartTime" access="readwrite" notification="y" test_value="00:35"/>  
+      <property type="s" name="EndTime" access="readwrite" notification="y" test_value="00:36"/>  
+      <property type="s" name="ControlCycle" access="readwrite" notification="n" test_value="DAY"/>  
+      <property type="b" name="Enable" access="readwrite" notification="y" test_value="false"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/Power/SleepTimers/{i}"> 
+    <interface name="com.ctc.igd1.SleepTimer"> 
+      <property type="as" name="Day" access="readwrite" notification="y"/>  
+      <property type="s" name="Time" access="readwrite" notification="y"/>  
+      <property type="s" name="Active" access="readwrite" notification="y"/>  
+      <property type="b" name="Enable" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/Power/SleepTimers"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/System"> 
+    <interface name="com.ctc.igd1.SysCmd"> 
+      <property type="y" name="UpgradeStatus" access="read" notification="y"/>  
+      <property type="s" name="UpgradeSWVersion" access="read" notification="n"/>  
+      <property type="y" name="RestoreStatus" access="read" notification="y"/>  
+      <property type="s" name="Province" access="read" notification="n"/>  
+      <property type="y" name="MemAlarm" access="readwrite" notification="n"/>  
+      <property type="y" name="MemLimit" access="readwrite" notification="n"/>  
+      <method name="SetLOID"> 
+        <arg type="s" name="loid" direction="in" test_value="test123"/>  
+        <arg type="s" name="password" direction="in" test_value="test123"/>  
+        <arg type="s" name="province" direction="in" test_value="test123"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="RegisterLOID"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="CheckLOID"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="SetDateTime"> 
+        <arg type="s" name="time" direction="in" test_value="2016-04-05T10:00:00+00:15"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Reboot"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Restore"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="LocalRecovery"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Upgrade"> 
+        <arg type="s" name="url" direction="in" test_value="http://182.125.102.90/test.img.1"/>  
+        <arg type="u" name="mode" direction="in" test_value="0"/>  
+        <arg type="u" name="method" direction="in" test_value="0"/>  
+        <arg type="b" name="needreboot" direction="in" test_value="0"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="ClearUpgradeStatus"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="ClearRestoreStatus"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="CheckUAPasswd"> 
+        <arg type="s" name="pass" direction="in" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="SetUAPasswd"> 
+        <arg type="s" name="pass" direction="in" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="CheckTAPasswd"> 
+        <arg type="s" name="pass" direction="in" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="UploadTroubleLocatingInfo"> 
+        <arg type="s" name="uploadurl" direction="in" test_value="user1"/>  
+        <arg type="s" name="faultcategory" direction="in" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="StartCollectionDebugInfo"> 
+        <arg type="s" name="uploadurl" direction="in" test_value="user1"/>  
+        <arg type="s" name="category" direction="in" test_value="user1"/>  
+        <arg type="q" name="timeout" direction="in" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="GetTAPasswd"> 
+        <arg type="s" name="pass" direction="out" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="GetUAPasswd"> 
+        <arg type="s" name="pass" direction="out" test_value="user1"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <signal name="SysMemControl"> 
+        <arg name="signaltype" type="s"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/PPPoE"> 
+    <interface name="com.ctc.igd1.PPPoE"> 
+      <property type="s" name="PPPoEUserName" access="read" notification="y" test_value="ON"/> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/DHCPServer"> 
+    <interface name="com.ctc.igd1.DHCPServer"> 
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="s" name="IPAddr" access="readwrite" notification="y"/>  
+      <property type="s" name="MinAddress" access="readwrite" notification="y"/>  
+      <property type="s" name="MaxAddress" access="readwrite" notification="y"/>  
+      <property type="s" name="SubnetMask" access="readwrite" notification="y"/>  
+      <property type="u" name="LeaseTime" access="readwrite" notification="y" test_value="0"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/PortMapping/{i}"> 
+    <interface name="com.ctc.igd1.PortMapping"> 
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="u" name="LeaseDuration" access="readwrite" notification="y"/>  
+      <property type="s" name="RemoteHost" access="readwrite" notification="y"/>  
+      <property type="u" name="ExternalPort" access="readwrite" notification="y"/>  
+      <property type="u" name="InternalPort" access="readwrite" notification="y"/>  
+      <property type="s" name="PortMappingProtocol" access="readwrite" notification="y"/>  
+      <property type="s" name="InternalClient" access="readwrite" notification="y"/>  
+      <property type="s" name="Description" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/PortMapping"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/PlatformService"> 
+    <interface name="com.ctc.igd1.PlatformService"> 
+      <property type="y" name="Appmodel" access="read" notification="y"/>  
+      <property type="s" name="InitUAPwd" access="read" notification="n"/>  
+      <property type="s" name="InitSSID" access="read" notification="n"/>  
+      <property type="s" name="InitSSIDPwd" access="read" notification="n"/>  
+      <property type="s" name="DistAddr" access="readwrite" notification="y"/>  
+      <property type="u" name="Port" access="readwrite" notification="y"/>  
+      <property type="u" name="Heartbeat" access="readwrite" notification="n"/>  
+      <property type="u" name="Ability" access="readwrite" notification="y"/>  
+      <property type="u" name="LocalPort" access="readwrite" notification="y"/>  
+      <property type="s" name="Version" access="readwrite" notification="n"/>  
+      <property type="s" name="SSN" access="readwrite" notification="n"/>  
+      <property type="y" name="DistStatus" access="readwrite" notification="n"/>  
+      <property type="s" name="DistErrorMsg" access="readwrite" notification="n"/>  
+      <property type="s" name="OperAddr" access="readwrite" notification="n"/>  
+      <property type="y" name="OperStatus" access="readwrite" notification="n"/>  
+      <property type="s" name="OperErrorMsg" access="readwrite" notification="n"/>  
+      <property type="s" name="PluginAddr" access="readwrite" notification="n"/>  
+      <property type="y" name="PluginStatus" access="readwrite" notification="n"/>  
+      <property type="s" name="PluginErrorMsg" access="readwrite" notification="n"/>  
+      <property type="s" name="BSSAddr" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/IncomingFilter"> 
+    <interface name="com.ctc.igd1.IncomingFilter"> 
+      <method name="AddIncomingEntry"> 
+        <arg name="remoteIP" type="s" direction="in"/>  
+        <arg name="protocol" type="y" direction="in"/>  
+        <arg name="port" type="u" direction="in"/>  
+        <arg name="interface" type="y" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="DelIncomingEntry"> 
+        <arg name="remoteIP" type="s" direction="in"/>  
+        <arg name="protocol" type="y" direction="in"/>  
+        <arg name="port" type="u" direction="in"/>  
+        <arg name="interface" type="y" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/Classification/{i}/Type/{i}"> 
+    <interface name="com.ctc.igd1.QoSClassificationType"> 
+      <property type="s" name="Type" access="readwrite" notification="n"/>  
+      <property type="s" name="Max" access="readwrite" notification="n"/>  
+      <property type="s" name="Min" access="readwrite" notification="n"/>  
+      <property type="s" name="ProtocolList" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/Classification/{i}/Type"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/Classification/{i}"> 
+    <interface name="com.ctc.igd1.QoSClassification"> 
+      <property type="u" name="ClassQueue" access="readwrite" notification="n"/>  
+      <property type="u" name="DSCPMarkValue" access="readwrite" notification="n"/>  
+      <property type="u" name="VLAN8021PValue" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/Classification"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/PriorityQueue/{i}"> 
+    <interface name="com.ctc.igd1.QoSPriorityQueue"> 
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="u" name="Priority" access="readwrite" notification="n"/>  
+      <property type="u" name="Weight" access="readwrite" notification="n"/>  
+      <property type="i" name="Car" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/PriorityQueue"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/App/{i}"> 
+    <interface name="com.ctc.igd1.QoSApp"> 
+      <property type="s" name="AppName" access="readwrite" notification="n"/>  
+      <property type="u" name="ClassQueue" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS/App"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/QoS"> 
+    <interface name="com.ctc.igd1.QoS"> 
+      <property type="s" name="Mode" access="readwrite" notification="n"/>  
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="u" name="Bandwidth" access="readwrite" notification="n"/>  
+      <property type="s" name="Plan" access="readwrite" notification="n"/>  
+      <property type="b" name="EnableForceWeight" access="readwrite" notification="n"/>  
+      <property type="b" name="EnableDSCPMark" access="readwrite" notification="n"/>  
+      <property type="u" name="Enable8021P" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/DNSSpeedLimit"> 
+    <interface name="com.ctc.igd1.DNSSpeedLimit"> 
+      <property type="s" name="Domain" access="readwrite" notification="n"/>  
+      <property type="s" name="LimitAction" access="readwrite" notification="n"/>  
+      <property type="s" name="HgwInfo" access="read" notification="n"/>  
+      <property type="s" name="DeviceInfo" access="read" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/IPTV"> 
+    <interface name="com.ctc.igd1.IPTV"> 
+      <property type="b" name="IGMPEnable" access="read" notification="n"/>  
+      <property type="b" name="ProxyEnable" access="readwrite" notification="n"/>  
+      <property type="b" name="SnoopingEnable" access="readwrite" notification="n"/>  
+      <property type="u" name="STBNumber" access="read" notification="n"/>  
+      <property type="u" name="iTVLineStatus" access="read" notification="y"/>  
+      <method name="StartDetectiTVLineStatus"> 
+        <arg type="u" name="duration" direction="in" test_value="0"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Diagnostics/IADTest"> 
+    <interface name="com.ctc.igd1.IADDiagnostics"> 
+      <property type="u" name="RegistResult" access="read" notification="y"/>  
+      <property type="u" name="Reason" access="read" notification="y"/>  
+      <method name="StartIADDiagTest"> 
+        <arg type="u" name="TestServer" direction="in" test_value="0"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/Voice/PoorQualityStats/{i}"> 
+    <interface name="com.ctc.igd1.VoicePoorQualityStats"> 
+      <property type="s" name="StatTime" access="read" notification="n"/>  
+      <property type="t" name="TxPackets" access="read" notification="n"/>  
+      <property type="t" name="RxPackets" access="read" notification="n"/>  
+      <property type="u" name="MeanDelay" access="read" notification="n"/>  
+      <property type="u" name="MeanJitter" access="read" notification="n"/>  
+      <property type="u" name="FractionLoss" access="read" notification="n"/>  
+      <property type="s" name="LocalIPAddress" access="read" notification="n"/>  
+      <property type="u" name="LocalUDPPort" access="read" notification="n"/>  
+      <property type="s" name="FarEndIPAddress" access="read" notification="n"/>  
+      <property type="u" name="FarEndUDPPort" access="read" notification="n"/>  
+      <property type="u" name="MosLq" access="read" notification="n"/>  
+      <property type="s" name="Codec" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/Voice/PoorQualityStats"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Diagnostics/VoiceSimulateTest"> 
+    <interface name="com.ctc.igd1.VOIPSimulateTest"> 
+      <property type="s" name="CalledNumber" access="readwrite" notification="n"/>  
+      <property type="b" name="DialDTMFConfirmEnable" access="readwrite" notification="n"/>  
+      <property type="s" name="DialDTMFConfirmNumber" access="readwrite" notification="n"/>  
+      <property type="y" name="DialDTMFConfirmResult" access="read" notification="y"/>  
+      <property type="s" name="Status" access="read" notification="y"/>  
+      <property type="y" name="Conclusion" access="read" notification="y"/>  
+      <property type="s" name="CallerFailReason" access="read" notification="y"/>  
+      <property type="s" name="CalledFailReason" access="read" notification="y"/>  
+      <property type="u" name="FailedResponseCode" access="read" notification="y"/>  
+      <method name="StartTest"> 
+        <arg type="u" name="TestType" direction="in" test_value="0"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Info/PhoneConnectivity"> 
+    <interface name="com.ctc.igd1.PhoneConnectivity"> 
+      <property type="b" name="PhoneConnectivity" access="read" notification="y"/>  
+      <property type="b" name="OffHookAlarmStatus" access="read" notification="y"/>  
+      <method name="StartTest"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/IPV6/LAN"> 
+    <interface name="com.ctc.igd1.IPv6LANConfig"> 
+      <property type="s" name="LocalAddress" access="readwrite" notification="y"/>  
+      <property type="s" name="ConfigType" access="readwrite" notification="y"/>  
+      <property type="s" name="DNSWAN" access="readwrite" notification="y"/>  
+      <property type="s" name="Servers" access="readwrite" notification="y"/>  
+      <property type="s" name="PrefixMode" access="readwrite" notification="y"/>  
+      <property type="s" name="DelegatedWAN" access="readwrite" notification="y"/>  
+      <property type="s" name="Prefix" access="readwrite" notification="y"/>  
+      <property type="u" name="ValidLifeTime" access="readwrite" notification="y"/>  
+      <property type="u" name="PreferredLifeTime" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/IPV6/DHCPV6S"> 
+    <interface name="com.ctc.igd1.DHCPv6Server"> 
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="s" name="MaxAddress" access="readwrite" notification="y"/>  
+      <property type="s" name="MinAddress" access="readwrite" notification="y"/>  
+      <property type="u" name="ValidLifeTime" access="readwrite" notification="y"/>  
+      <property type="u" name="PreferredLifeTime" access="readwrite" notification="y"/>  
+      <property type="b" name="Option16Enable" access="readwrite" notification="y"/>  
+      <property type="b" name="Option17Enable" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Config/IPV6/RA"> 
+    <interface name="com.ctc.igd1.RouterAdvertisement"> 
+      <property type="b" name="Enable" access="readwrite" notification="y"/>  
+      <property type="u" name="MaxRtrAdvInterval" access="readwrite" notification="y"/>  
+      <property type="u" name="MinRtrAdvInterval" access="readwrite" notification="y"/>  
+      <property type="b" name="AdvManagedFlag" access="readwrite" notification="y"/>  
+      <property type="b" name="AdvOtherConfigFlag" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/CWMP"> 
+    <interface name="com.ctc.igd1.CWMP"> 
+      <method name="AddObject"> 
+        <arg name="ObjectName" type="s" direction="in"/>  
+        <arg name="InstNum" type="u" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg name="ObjectName" type="s" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="SetParameterValues"> 
+        <arg name="List" type="a(ss)" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetParameterValues"> 
+        <arg name="List" type="as" direction="in"/>  
+        <arg name="ValueList" type="a(ss)" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="GetParameterNames"> 
+        <arg name="ObjectName" type="s" direction="in"/>  
+        <arg name="NextLevel" type="b" direction="in"/>  
+        <arg name="ParameterList" type="a(sb)" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/MACBlackList/{i}"> 
+    <interface name="com.ctc.igd1.MACBlackList"> 
+      <property type="s" name="MAC" access="readwrite" notification="n"/>  
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="s" name="Name" access="readwrite" notification="n"/>  
+      <property type="u" name="BlockedTimes" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/MACBlackList"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/MACWhiteList/{i}"> 
+    <interface name="com.ctc.igd1.MACWhiteList"> 
+      <property type="s" name="MAC" access="readwrite" notification="n"/>  
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="s" name="Name" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/MACWhiteList"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/URLFilter/{i}"> 
+    <interface name="com.ctc.igd1.URLFilter"> 
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="s" name="URL" access="readwrite" notification="n"/>  
+      <property type="s" name="MAC" access="readwrite" notification="n"/>  
+      <property type="s" name="Name" access="readwrite" notification="n"/>  
+      <property type="u" name="BlockedTimes" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/URLFilter"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/DNSFilter/{i}"> 
+    <interface name="com.ctc.igd1.DNSFilter"> 
+      <property type="b" name="Enable" access="readwrite" notification="n"/>  
+      <property type="s" name="Name" access="readwrite" notification="n"/>  
+      <property type="s" name="Hostname" access="readwrite" notification="n"/>  
+      <property type="y" name="Action" access="readwrite" notification="n"/>  
+      <property type="s" name="MAC" access="readwrite" notification="n"/>  
+      <property type="u" name="BlockedTimes" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/DNSFilter"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/nas"> 
+    <interface name="com.ctc.igd1.NASAccess"> 
+      <method name="GetFileNum"> 
+        <arg type="s" name="folderName" direction="in" test_value="/home"/>  
+        <arg type="u" name="fileNum" direction="out"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="ListFolder"> 
+        <arg type="s" name="folderName" direction="in" test_value="/home/"/>  
+        <arg type="u" name="StartIndex" direction="in" test_value="1"/>  
+        <arg type="u" name="EndIndex" direction="in" test_value="5"/>  
+        <arg type="a(ssbts)" name="FileList" direction="out"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="CreateFolder"> 
+        <arg type="s" name="folderName" direction="in" test_value="dianxintest"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Rename"> 
+        <arg type="s" name="oldName" direction="in" test_value="dianxintest"/>  
+        <arg type="s" name="newName" direction="in" test_value="dianxintest2"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Remove"> 
+        <arg type="s" name="name" direction="in" test_value="dianxintest2"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Move"> 
+        <arg type="s" name="filename" direction="in" test_value="dianxintest"/>  
+        <arg type="s" name="destFolderName" direction="in" test_value="dianxintest2"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="Copy"> 
+        <arg type="s" name="name" direction="in" test_value="dianxintest"/>  
+        <arg type="s" name="destFolderName" direction="in" test_value="dianxintest2"/>  
+        <arg type="u" name="TransactionId" direction="out"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method>  
+      <method name="GetCopyProgress"> 
+        <arg type="u" name="TransactionId" direction="in" test_value="0"/>  
+        <arg type="u" name="Percent" direction="out"/>  
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/usb/devices/{i}"> 
+    <interface name="com.ctc.igd1.usb.FileSystem"> 
+      <property type="s" name="MountPoint" access="read" notification="n"/>  
+      <property type="t" name="TotalSize" access="read" notification="n"/>  
+      <property type="t" name="UsedSize" access="read" notification="n"/>  
+      <property type="t" name="FreeSize" access="read" notification="n"/>  
+      <property type="s" name="Label" access="read" notification="n"/>  
+      <method name="Unmount"> 
+        <arg name="options" type="a{sv}" direction="in"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="Mount"> 
+        <arg name="options" type="a{sv}" direction="in" test_value=" "/>  
+        <arg name="mount_path" type="s" direction="out"/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="SetLabel"> 
+        <arg name="label" type="s" direction="in" test_value=" "/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <method name="Format"> 
+        <arg name="options" type="a{sv}" direction="in" test_value=" "/>  
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.usb.Device"> 
+      <property type="q" name="DeviceType" access="read" notification="n"/>  
+      <property type="i" name="DeviceId" access="read" notification="n"/>  
+      <property type="s" name="DeviceName" access="read" notification="n"/>  
+      <property type="s" name="Vendor" access="read" notification="n"/>  
+      <property type="s" name="Model" access="read" notification="n"/>  
+      <property type="b" name="WriteProtection" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/usb/devices"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/VPN/Connection/{i}/Stats"> 
+    <interface name="com.ctc.igd1.VPNConnectionStats"> 
+      <property type="as" name="data" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/VPN/Connection/{i}"> 
+    <interface name="com.ctc.igd1.VPNConnection"> 
+      <property type="s" name="vpn_type" access="readwrite" notification="n"/>  
+      <property type="s" name="tunnel_name" access="readwrite" notification="n"/>  
+      <property type="s" name="user_id" access="readwrite" notification="n"/>  
+      <property type="y" name="vpn_enable" access="readwrite" notification="n"/>  
+      <property type="y" name="vpn_status" access="read" notification="n"/>  
+      <property type="s" name="vpn_mode" access="readwrite" notification="n"/>  
+      <property type="s" name="vpn_priority" access="readwrite" notification="n"/>  
+      <property type="s" name="vpn_idletime" access="readwrite" notification="n"/>  
+      <property type="s" name="account_proxy" access="readwrite" notification="n"/>  
+      <property type="s" name="vpn_addr" access="readwrite" notification="n"/>  
+      <property type="s" name="vpn_account" access="readwrite" notification="n"/>  
+      <property type="s" name="vpn_pwd" access="readwrite" notification="n"/>  
+      <property type="s" name="vpn_port" access="readwrite" notification="n"/>  
+      <property type="s" name="attach_mode" access="readwrite" notification="n"/>  
+      <property type="as" name="domains" access="readwrite" notification="n"/>  
+      <property type="as" name="ips" access="readwrite" notification="n"/>  
+      <property type="as" name="terminal_mac" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/VPN/Connection"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/dns/{i}"> 
+    <interface name="com.ctc.igd1.DNSTunnel"> 
+      <property type="s" name="ServerIP" access="readwrite" notification="n"/>  
+      <property type="as" name="DomainName" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/dns"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="com.ctc.igd1.DNSServerConfig"> 
+      <property type="s" name="Server1" access="readwrite" notification="y"/>  
+      <property type="s" name="Server2" access="readwrite" notification="y"/>  
+      <method name="FlushDNS"> 
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/dnsv6"> 
+    <interface name="com.ctc.igd1.DNSv6ServerConfig"> 
+      <property type="s" name="Server1" access="readwrite" notification="y"/>  
+      <property type="s" name="Server2" access="readwrite" notification="y"/>  
+      <method name="FlushDNS"> 
+        <arg type="u" name="result" direction="out"/>  
+        <arg type="s" name="errdesc" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/ddns/{i}"> 
+    <interface name="com.ctc.igd1.DDNSServerConfig"> 
+      <property type="b" name="DDNSCfgEnabled" access="readwrite" notification="n"/>  
+      <property type="y" name="DDNSStatus" access="read" notification="n"/>  
+      <property type="s" name="DDNSProvider" access="readwrite" notification="n"/>  
+      <property type="s" name="DDNSUsername" access="readwrite" notification="n"/>  
+      <property type="s" name="DDNSPassword" access="readwrite" notification="n"/>  
+      <property type="u" name="ServicePort" access="readwrite" notification="n"/>  
+      <property type="s" name="DDNSDomainName" access="readwrite" notification="n"/>  
+      <property type="s" name="DDNSHostName" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/ddns"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/Ftpserver"> 
+    <interface name="com.ctc.igd1.FTPServer"> 
+      <property type="y" name="Enable" access="readwrite" notification="y"/>  
+      <property type="b" name="AllowAnonymous" access="readwrite" notification="y"/>  
+      <property type="u" name="Port" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/Ftpserver/Accounts/{i}"> 
+    <interface name="com.ctc.igd1.FTPAccount"> 
+      <property type="s" name="UserName" access="readwrite" notification="y"/>  
+      <property type="s" name="Password" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/Ftpserver/Accounts"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/SambaServer"> 
+    <interface name="com.ctc.igd1.SambaServer"> 
+      <property type="y" name="Enable" access="readwrite" notification="y" test_value="0"/>  
+      <property type="b" name="AllowAnonymous" access="readwrite" notification="y" test_value="1"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/SambaServer/Accounts/{i}"> 
+    <interface name="com.ctc.igd1.SambaAccount"> 
+      <property type="s" name="UserName" access="readwrite" notification="y"/>  
+      <property type="s" name="Password" access="readwrite" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Storage/SambaServer/Accounts"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/HTTPServer"> 
+    <interface name="com.ctc.igd1.HTTPServer"> 
+      <property type="s" name="AdminPassword" access="read" notification="y"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/Telnetserver"> 
+    <interface name="com.ctc.igd1.TelnetServer"> 
+      <property type="y" name="Enable" access="readwrite" notification="n"/>  
+      <property type="u" name="LANPort" access="read" notification="n"/>  
+      <property type="u" name="WANPort" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/Telnetserver/Accounts/{i}"> 
+    <interface name="com.ctc.igd1.TelnetAccount"> 
+      <property type="s" name="UserName" access="read" notification="n"/>  
+      <property type="s" name="Password" access="read" notification="n"/>  
+      <property type="s" name="Type" access="read" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Network/Telnetserver/Accounts"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/saf1"> 
+    <interface name="com.ctc.saf1.framework"> 
+      <property type="s" name="SAFVersion" access="read" notification="n"/>  
+      <property type="s" name="FrameworkVersion" access="read" notification="n"/>  
+      <property type="s" name="BackupFrameworkVersion" access="read" notification="n"/>  
+      <property type="s" name="CloudClientVersion" access="read" notification="n"/>  
+      <property type="y" name="BackupMTD" access="read" notification="n"/>  
+      <property type="y" name="ActiveMTD" access="read" notification="n"/>  
+      <property type="s" name="Status" access="read" notification="n"/>  
+      <property type="u" name="WaitUntil" access="read" notification="n"/>  
+      <property type="u" name="RunTime" access="read" notification="n"/>  
+      <property type="s" name="UpgradeTime" access="read" notification="n"/>  
+      <method name="DiagService"> 
+        <arg name="srvname" type="s" direction="in"/>  
+        <arg name="opmode" type="y" direction="in"/>  
+        <arg name="result" type="u" direction="out"/> 
+      </method>  
+      <method name="UpdateMTDInfo"> 
+        <arg name="result" type="u" direction="out"/> 
+      </method>  
+      <method name="Upgrade"> 
+        <arg name="filename" type="s" direction="in" test_value="user.img"/>  
+        <arg name="result" type="u" direction="out"/> 
+      </method>  
+      <method name="Switch"> 
+        <arg name="result" type="u" direction="out"/> 
+      </method>  
+      <method name="Restore"> 
+        <arg name="result" type="u" direction="out"/> 
+      </method>  
+      <method name="Pause"> 
+        <arg name="interval" type="u" direction="in" test_value="30"/>  
+        <arg name="result" type="u" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/OMDiag"> 
+    <interface name="com.ctc.igd1.OMDiag"> 
+      <property type="u" name="CPUTemperature" access="read" notification="n"/>  
+      <property type="u" name="CPUTempThreshold" access="readwrite" notification="n"/>  
+      <property type="u" name="PONTempThreshold" access="readwrite" notification="n"/>  
+      <property type="u" name="SystemFlashThreshold" access="readwrite" notification="n"/>  
+      <property type="u" name="ConntrackNumber" access="read" notification="n"/>  
+      <property type="u" name="ConnNumThreshold" access="readwrite" notification="n"/>  
+      <property type="u" name="LAN1NegoRate" access="read" notification="n"/>  
+      <property type="u" name="LAN2NegoRate" access="read" notification="n"/>  
+      <property type="u" name="LAN3NegoRate" access="read" notification="n"/>  
+      <property type="u" name="LAN4NegoRate" access="read" notification="n"/>  
+      <method name="CollectWiFiInfo"> 
+        <arg name="result" type="u" direction="out"/>  
+        <arg name="errdesc" type="s" direction="out"/> 
+      </method>  
+      <signal name="SysCPUTempAlarm"> 
+        <arg type="y" name="cputemp"/> 
+      </signal>  
+      <signal name="SysPONTempAlarm"> 
+        <arg type="y" name="pontemp"/> 
+      </signal>  
+      <signal name="SysWritableFlashAlarm"> 
+        <arg type="y" name="flashoccupy"/> 
+      </signal>  
+      <signal name="SysConnNumAlarm"> 
+        <arg type="u" name="connum"/> 
+      </signal>  
+      <signal name="CollectWiFiInfoStatus"> 
+        <arg type="u" name="Result"/>  
+        <arg type="s" name="errdesc"/> 
+      </signal>  
+      <signal name="WiFiConnFailure"> 
+        <arg type="s" name="ssid"/>  
+        <arg type="s" name="bssid"/>  
+        <arg type="s" name="reason"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/OMDiag/Resource/{i}"> 
+    <interface name="com.ctc.igd1.OMDiagResource"> 
+      <property type="s" name="ServiceName" access="readwrite" notification="n"/>  
+      <property type="u" name="CPUPercentage" access="readwrite" notification="n"/>  
+      <property type="u" name="MEMPercentage" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/OMDiag/Resource"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/OMDiag/Process/{i}"> 
+    <interface name="com.ctc.igd1.OMDiagProcess"> 
+      <property type="s" name="ServiceName" access="readwrite" notification="n"/> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="com.ctc.igd1.Properties"> 
+      <method name="Get"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="out"/> 
+      </method>  
+      <method name="GetAll"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="out"/> 
+      </method>  
+      <method name="Set"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="property_name" type="s" direction="in"/>  
+        <arg name="value" type="v" direction="in"/> 
+      </method>  
+      <method name="SetMulti"> 
+        <arg name="interface_name" type="s" direction="in"/>  
+        <arg name="|props|properties" type="a{sv}" direction="in"/> 
+      </method>  
+      <signal name="PropertiesChanged"> 
+        <arg name="interface_name" type="s"/>  
+        <arg name="changed_properties" type="a{sv}"/>  
+        <arg name="invalidated_properties" type="as"/> 
+      </signal> 
+    </interface> 
+  </node>  
+  <node name="/com/ctc/igd1/Telecom/OMDiag/Process"> 
+    <interface name="com.ctc.igd1.ObjectManager"> 
+      <method name="GetManagedObjects"> 
+        <arg type="a{oa{sa{sv}}}" name="|objpath_interfaces_and_properties|object_paths_interfaces_and_properties" direction="out"/> 
+      </method>  
+      <method name="AddObject"> 
+        <arg type="o" name="|objpath|object_path" direction="out"/> 
+      </method>  
+      <method name="DeleteObject"> 
+        <arg type="o" name="|objpath|object_path" direction="in"/> 
+      </method>  
+      <method name="RemoveAllObjects"/>  
+      <signal name="InterfacesAdded"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="a{sa{sv}}" name="interfaces_and_properties"/> 
+      </signal>  
+      <signal name="InterfacesRemoved"> 
+        <arg type="o" name="object_path"/>  
+        <arg type="as" name="interfaces"/> 
+      </signal> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Peer"> 
+      <method name="Ping"/>  
+      <method name="GetMachineId"> 
+        <arg name="machine_uuid" type="s" direction="out"/> 
+      </method> 
+    </interface>  
+    <interface name="org.freedesktop.DBus.Introspectable"> 
+      <method name="Introspect"> 
+        <arg name="|data|xml_data" type="s" direction="out"/> 
+      </method> 
+    </interface> 
+  </node> 
+</dbus>

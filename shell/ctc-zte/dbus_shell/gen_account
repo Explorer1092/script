@@ -1,0 +1,28 @@
+#ifconfig br0 | grep HWaddr| awk -F"HWaddr " '{ print $2 }'| sed 's/[a-z]/\u&/g' | sed "s;:;;g"
+cat info_gen.txt
+
+MAC=1C25E1473473
+WIFI=ChinaNet-gpontest3
+WIFI_PWD=lrylry12
+WEB_PWD=12345
+
+
+MAC=`echo $MAC | sed "s;:;;g"`
+echo 
+echo 
+echo 
+echo [set device info:]
+echo "sismac 1 1024 $WIFI"
+echo "sismac 1 1312 $WIFI_PWD"
+echo "sismac 1 1793 $WEB_PWD"
+echo
+echo [reg info]
+echo MAC=$MAC 
+echo SN=FFFFFFFFFFFFFFFFFFFFFF$MAC
+echo DeviceType=127/128
+echo WIFI=$WIFI
+echo WIFI_PWD=$WIFI_PWD
+echo WEB_PWD=$WEB_PWD
+
+echo "FAQ 1: Post Man return -1001: please access The following URL(replace mac and sn) in Browser "
+echo https://nosplat8.189cube.com/operatorForDistribute/gatwayBindConform?token=AA2E370F9CD3EC0F2654F0E2F0A0BA6C9CE04E9246F57EC5A6AE20E1A1634FD05B5EF8951AFD3EF90B3B8A3C3E356A6CD91FB87729B3265D248981E154E92AD477E87588E45B66C41B61BFA9195E89E397B901D6224A8054627A538BFBA635AF&mac=${MAC}&DeviceSN=${SN}&OperatorPlatformID=80000&Time=20180405142809&AccessSecret=C49517C9A91E4E85533FFF091F7D663927E736322D6E4D465041E20CA98302BCCBB0037076929AE3DEDF7E88F6C5B66B

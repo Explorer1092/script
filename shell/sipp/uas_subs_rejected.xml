@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE scenario SYSTEM "sipp.dtd">
+
+<scenario name="Basic UAS responder">
+    <!--
+  <send>
+    <![CDATA[
+      REGISTER sip:[remote_ip] SIP/2.0
+      Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+      From: [field0] <sip:[field0]@[remote_ip]:[remote_port]>;tag=[call_number]
+      To: [field0] <sip:[field0]@[remote_ip]:[remote_port]>
+      Call-ID: [call_id]
+      CSeq: 1 REGISTER
+      Contact: sip:[field0]@[local_ip]:[local_port]
+      Content-Length: 0
+      Expires: 3600
+    ]]>
+   </send>
+  <recv response="200"  >
+  </recv>
+  -->
+    <recv request="SUBSCRIBE" crlf="true" rrs="true">
+        <action>
+            <ereg regexp=";(.*)"
+                search_in="hdr"
+                header="From: "
+                check_it="true"
+                assign_to="tag" />
+            <ereg regexp="(.*)"
+                search_in="hdr"
+                header="Event: "
+                check_it="true"
+                assign_to="event" />
+            <log message="Event header is [$event]"/>
+            <strcmp assign_to="result" variable="event" value="reg" />
+            <log message="Event and reg compare result: [$result]"/>
+            <test assign_to="bequal" compare="equal" variable="result" value="0" />
+            <log message="result and 0 compare result: [$bequal]"/>
+            <!--
+            <log message="From is [last_From]. tags is [peer_tag_param]."/>
+            -->
+        </action>
+    </recv>
+    <send>
+        <![CDATA[
+            SIP/2.0 200 OK
+            [last_Via:]
+            [last_From:]
+            [last_To:];tag=[call_number]
+            [last_Call-ID:]
+            [last_CSeq:]
+            Contact: <sip:[local_ip]:[local_port];transport=[transport]>
+            Expires: 360
+            Content-Length: 0
+        ]]>
+    </send>
+
+    <nop hide="true" condexec="bequal">
+        <action>
+            <assignstr assign_to="regsub" value="1" />
+        </action>
+    </nop>
+    <nop hide="true" test="regsub" next="reg_subs" />
+    <nop hide="true" next="pro_subs" />
+
+    <label id="reg_subs" />
+    <send next="recv_200">
+        <![CDATA[
+            NOTIFY [next_url] SIP/2.0
+            Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+            From: <sip:[field0]@[remote_ip]>;tag=[call_number]
+            To: "[field1]"<sip:[field1]@[remote_ip]>[$tag]
+            [last_Call-ID:]
+            CSeq: 2 NOTIFY
+            [last_Event:]
+            [routes]
+            Contact: sip:[field0]@[local_ip]:[local_port]
+            Max-Forwards: 70
+            Subscription-State: active;expires=360
+            Content-Type: application/reginfo+xml
+            Content-Length: [len]
+
+            <?xml version="1.0"?>
+            <reginfo xmlns="urn:ietf:params:xml:ns:reginfo" version="1" state="full">
+                <registration aor="sip:[field1]@192.168.78.239" id="1120570" state="active">
+                    <contact state="terminated" event="rejected" duration-registered="0" expires="1800" id="608139">
+                        <uri>[next_url]</uri>
+                        <display-name/>
+                    </contact>
+                </registration>
+                <registration aor="tel:[field1]" id="323734" state="active">
+                    <contact state="active" event="created" duration-registered="0" expires="1800" id="608139">
+                        <uri>[next_url]</uri>
+                        <display-name/>
+                    </contact>
+                </registration>
+            </reginfo>
+        ]]>
+    </send>
+    <label id="pro_subs" />
+    <send>
+        <![CDATA[
+            NOTIFY [next_url] SIP/2.0
+            Via: SIP/2.0/[transport] [local_ip]:[local_port];branch=[branch]
+            From: <sip:[field0]@[remote_ip]>;tag=[call_number]
+            To: "[field1]"<sip:[field1]@[remote_ip]>[$tag]
+            [last_Call-ID:]
+            CSeq: 2 NOTIFY
+            [last_Event:]
+            [routes]
+            Contact: sip:[field0]@[local_ip]:[local_port]
+            Max-Forwards: 70
+            Subscription-State: active;expires=360
+            Content-Type: application/simservs+xml
+            Content-Length: [len]
+
+            <?xml version="1.0"?>
+            <simservs>
+                <dial-tone-management>
+                    <dial-tone-pattern>special-condition-tone</dial-tone-pattern>
+                </dial-tone-management>
+                <hot-line-service>
+                    <addr>7026</addr>
+                    <timeout>5</timeout>
+                </hot-line-service>
+                <three-party-conference active="true"/>
+                <call-hold active="true"/>
+                <explicit-call-transfer active="true"/>
+                <malicious-call-identify/>
+            </simservs>
+        ]]>
+    </send>
+    <label id="recv_200">
+    <recv response="200" rtd="true" crlf="true" rrs="true">
+    </recv>
+    <ResponseTimeRepartition value="10, 20, 30, 40, 50, 100, 150, 200"/>
+    <CallLengthRepartition value="10, 50, 100, 500, 1000, 5000, 10000"/>
+</scenario>

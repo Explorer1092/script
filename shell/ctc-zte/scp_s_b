@@ -1,0 +1,22 @@
+#!/usr/bin/expect  
+echo "xxxxxxYYY"
+
+set timeout 600
+
+spawn  date +%Y%m%d%H%M
+expect eof
+set cur_date $expect_out(buffer)
+#puts "curtime:$cur_date"
+
+if {$argc != 2} {
+send "usage ./scp_expect \$localpath \$remotepath\n"
+exit
+}
+
+set localpath  [lindex $argv [expr $argc-2]]
+set remotepath [lindex $argv [expr $argc-1]]
+spawn scp $localpath root@mcu.starnetuc.com:/home/mcs/downloads/zxic_ct_yueme_test/$remotepath-$cur_date
+expect "password: "  
+send "starnetsu8200PBX\r"  
+expect eof
+exit

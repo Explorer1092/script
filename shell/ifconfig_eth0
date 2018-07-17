@@ -1,0 +1,39 @@
+#/bin/sh
+
+red='\e[0;31m'          # 红色
+RED='\e[1;31m'
+green='\e[0;32m'        # 绿色
+GREEN='\e[1;32m'
+yellow='\e[0;33m'       # 黄色
+YELLOW='\e[1;33m'
+blue='\e[0;34m'         # 蓝色
+BLUE='\e[1;34m'
+purple='\e[0;35m'       # 紫色
+PURPLE='\e[1;35m'
+cyan='\e[0;36m'         # 蓝绿色
+CYAN='\e[1;36m'
+WHITE='\e[1;37m'        # 白色
+NC='\e[0m' # 没有颜色
+
+if [ "$1" = "" ] ;then
+echo -e "${YELLOW}Up eth0 and add route${NC}"
+sudo ifconfig eth0 192.168.78.214 netmask 255.255.255.0
+#sudo route add default gw 192.168.78.129
+sudo cp /home/lry/bin/my_resolv.conf /etc/resolv.conf
+sudo route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.78.129 dev eth0
+echo -e "${YELLOW}Now${NC}"
+ifconfig eth0
+route -n
+else
+echo -e "${YELLOW}Down eth0 and del route ,Before execute shell${NC}"
+route -n
+sudo ifconfig eth0 down
+#sudo route del gw 192.168.78.129
+sudo route del net  192.168.0.0
+echo -e "${YELLOW}Now :${NC}"
+ifconfig
+route -n
+fi
+
+
+#route add -net 192.168.0.0 netmask 255.255.0.0 gw 192.168.78.129 dev eth0

@@ -1,0 +1,14 @@
+1、获取设备MAC：在设备上执行以下命令
+ifconfig br0 | grep HWaddr| awk -F"HWaddr " '{ print $2 }'| sed 's/[a-z]/\u&/g' | sed "s;:;;g"
+
+2、修改脚本，根据登陆 https://nosauth8.189cube.com/adminlogin.php  test/test1234,在平台上 "预设MAC"导入数据。
+3、导入设备MAC后，在设备后
+Last: Restart Saf To Register PlatFarm
+saf console
+upt
+
+uci set cloudclient.global.loglevel=debug
+uci commit cloudclient
+uci set cloudclient.global.logdest="console"
+kill -30 `ubus call service list '{"name":"cloudclt"}' |grep pid| awk '{print $2}'| cut -d, -f1`
+killall -9 cloudclient;/etc/init.d/cloudclt restart
